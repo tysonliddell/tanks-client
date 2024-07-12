@@ -15,10 +15,10 @@ export class Game extends Scene
         this.load.image('tank', 'tank.png');
     }
 
-    create ()
+    create ({ server_address })
     {
         this.add.image(256, 256, 'background');
-        const ws = new WebSocket("ws://127.0.0.1:8765");
+        const ws = new WebSocket(`ws://${server_address}:8765`);
         const tank_colours = [0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00]
         const tank_images = {}
         ws.onmessage = (ev) => {
