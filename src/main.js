@@ -5,14 +5,19 @@ import { AUTO, Scale,Game } from 'phaser';
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config = {
     type: AUTO,
-    width: 1024,
-    height: 768,
-    parent: 'game-container',
-    backgroundColor: '#028af8',
+    // width: 1024,
+    // height: 768,
+    width: 256,
+    height: 256,
     scale: {
-        mode: Scale.FIT,
-        autoCenter: Scale.CENTER_BOTH
+        mode: Phaser.Scale.ZOOM_2X,
     },
+    // parent: 'game-container',
+    // backgroundColor: '#028af8',
+    // scale: {
+    //     mode: Scale.FIT,
+    //     autoCenter: Scale.CENTER_BOTH
+    // },
     scene: [
         MainGame
     ]

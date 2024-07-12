@@ -1,7 +1,7 @@
 {
-    "name": "template-parcel",
-    "version": "1.2.0",
-    "description": "A Phaser 3 template using Parcel 2 as the bundler.",
+    "name": "tanks-client",
+    "version": "1.0.0",
+    "description": "A simple multiplayer tank game.",
     "source": "./index.html",
     "browserslist": "> 0.25%, last 2 versions, not dead",
     "scripts": {
@@ -10,15 +10,11 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/phaserjs/template-parcel.git"
+        "url": "git+https://github.com/tysonliddell/tanks-client.git"
     },
-    "author": "Phaser Studio <support@phaser.io> (https://phaser.io/)",
+    "author": "Tyson Liddell",
     "license": "MIT",
     "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
-    "bugs": {
-        "url": "https://github.com/phaserjs/template-parcel/issues"
-    },
-    "homepage": "https://github.com/phaserjs/template-parcel#readme",
     "devDependencies": {
         "@parcel/transformer-glsl": "^2.12.0",
         "express": "^4.19.2",
