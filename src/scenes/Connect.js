@@ -7,6 +7,8 @@ export class ConnectScreen extends Scene {
 
     preload() {
         this.load.html('connectform', 'assets/connectform.html')
+
+        this.input.keyboard.addCapture('UP,DOWN,LEFT,RIGHT,SPACE');
     }
 
     create() {
