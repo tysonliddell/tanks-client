@@ -6,18 +6,23 @@ export class ConnectScreen extends Scene {
     }
 
     preload() {
-        this.load.html('connectform', 'assets/connectform.html')
+        this.load.setPath('assets');
+
+        this.load.image('splash-background', 'splash.png');
+        this.load.html('connectform', 'connectform.html')
 
         this.input.keyboard.addCapture('UP,DOWN,LEFT,RIGHT,SPACE');
     }
 
     create() {
+        this.add.image(0,0, 'splash-background').setOrigin(0,0).setCrop(0,0,512,512);
+
         const start_game = (server_address) => {
             this.scene.start('Game', {"server_address": server_address});
         }
 
-        this.add.text(0, 0, 'Connect to Tanks Server', { color: 'red', fontSize: '20px '});
-        const element = this.add.dom(300, 100).createFromCache('connectform');
+        this.add.text(50, 230, 'Connect to Server', { color: 'red', fontSize: '20px '});
+        const element = this.add.dom(300, 300).createFromCache('connectform');
         element.addListener('click');
 
         element.on('click', function (ev) {
