@@ -9,6 +9,7 @@ export class Game extends Scene
 
     preload ()
     {
+        this.scale.setGameSize(512 + 200, 512);
         this.load.setPath('assets');
 
         this.load.image('background', 'arena-bg.png');
@@ -24,12 +25,18 @@ export class Game extends Scene
         const tank_colours = [0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00];
         const tank_images = {};
         const bullet_images = {};
+        let scores = [];
         let player_num;
 
+        // Respawn text
         const death_text = this.add.text(50, 200, 'DEAD!', { color: 'red', fontSize: '40px'});
         const spawn_eta_text = this.add.text(50, 240, 'Respawn in TEST seconds', { color: 'red', fontSize: '20px'});
         death_text.visible = false;
         spawn_eta_text.visible = false;
+
+        // Scoreboard
+        this.add.rectangle(512,0,200,512,0x9D9E9D).setOrigin(0,0);
+        this.add.text(512 + 65, 10, 'Scores', { color: 'red', fontSize: '20px'});
 
         const dir_to_image_angle = (dir) => {
             switch (dir) {
@@ -69,6 +76,20 @@ export class Game extends Scene
             spawn_eta_text.visible = false;
         };
 
+        const update_scores = (game_state) => {
+            for (const score_text of scores.values()) {
+                score_text.destroy();
+            }
+
+            const in_game_players = game_state.filter(p => !!p);
+            const players_sorted_by_score = [...in_game_players].sort((p1,p2) => p2.s - p1.s);
+            scores = players_sorted_by_score.map(
+                (player_data, index) => this.add.text(
+                    512 + 5, 30 + 20*index, `Player ${player_data.id}: ${player_data.s}`, { color: 'red', fontSize: '20px'}
+                )
+            );
+        };
+
         ws.onmessage = (ev) => {
             const data = JSON.parse(ev.data)
             console.log(data)
@@ -96,6 +117,8 @@ export class Game extends Scene
                     } else {
                         hide_death_view();
                     }
+
+                    update_scores(game_state);
 
                     for (const index of [...missing_players, ...dead_player_indexes]) {
                         const tank_on_screen = !!tank_images[index];
