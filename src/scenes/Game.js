@@ -11,7 +11,7 @@ export class Game extends Scene
     {
         this.load.setPath('assets');
         
-        this.load.image('background', 'bg.png');
+        this.load.image('background', 'arena-bg.png');
         this.load.image('tank', 'new-tank.png');
 
         this.input.keyboard.addCapture('UP,DOWN,LEFT,RIGHT,SPACE');
